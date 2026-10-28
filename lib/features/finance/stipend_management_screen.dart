@@ -12,7 +12,7 @@ class StipendManagementScreen extends StatelessWidget {
         'class': 'Class 6 - Dakhil',
         'accountType': 'bKash',
         'accountNumber': '01711-XXXXXX',
-        'amount': 'à§³ 2,400',
+        'amount': '৳ 2,400',
         'status': 'Disbursed',
         'color': Colors.green.shade600 // Green
       },
@@ -21,7 +21,7 @@ class StipendManagementScreen extends StatelessWidget {
         'class': 'Class 9 - Science',
         'accountType': 'Nagad',
         'accountNumber': '01811-XXXXXX',
-        'amount': 'à§³ 3,000',
+        'amount': '৳ 3,000',
         'status': 'Pending Approval',
         'color': Colors.orange.shade500 // Amber
       },
@@ -30,7 +30,7 @@ class StipendManagementScreen extends StatelessWidget {
         'class': 'Alim 1st Year',
         'accountType': 'Bank Account',
         'accountNumber': '2050XXXXXXXXXXXX',
-        'amount': 'à§³ 4,500',
+        'amount': '৳ 4,500',
         'status': 'Rejected (Info Error)',
         'color': Colors.red.shade500 // Red
       },

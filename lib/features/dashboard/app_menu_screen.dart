@@ -27,7 +27,7 @@ import '../finance/expense_tracking_screen.dart';
 import '../finance/donation_screen.dart';
 import '../people/staff_attendance_screen.dart';
 import '../academic/leave_screen.dart';
-import '../dashboard/placeholder_screen.dart';
+import '../academic/teacher_evaluation_screen.dart';
 import '../people/committee_screen.dart';
 import '../operations/admission_screen.dart';
 import '../operations/inventory_screen.dart';
@@ -51,7 +51,7 @@ class BounceWrapper extends StatefulWidget {
   final Widget child;
   final VoidCallback onTap;
 
-  BounceWrapper({super.key, required this.child, required this.onTap});
+  const BounceWrapper({super.key, required this.child, required this.onTap});
 
   @override
   State<BounceWrapper> createState() => _BounceWrapperState();
@@ -107,7 +107,7 @@ class _BounceWrapperState extends State<BounceWrapper>
 
 class AppMenuScreen extends ConsumerWidget {
   final String role;
-  AppMenuScreen({super.key, required this.role});
+  const AppMenuScreen({super.key, required this.role});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -265,7 +265,7 @@ class AppMenuScreen extends ConsumerWidget {
                 _MenuRoute(
                   'Teacher Evaluation',
                   Icons.star_rate_rounded,
-                  PlaceholderScreen(title: 'Teacher Evaluation'),
+                  TeacherEvaluationScreen(),
                 ),
                 _MenuRoute(
                   'Committee/Majlis',

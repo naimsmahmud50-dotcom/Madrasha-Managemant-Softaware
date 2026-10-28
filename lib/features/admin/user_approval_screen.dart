@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:ui';
 
 class UserApprovalScreen extends StatelessWidget {
-  UserApprovalScreen({super.key});
+  const UserApprovalScreen({super.key});
 
   Future<void> _updateStatus(BuildContext context, String docId, String newStatus) async {
     try {
@@ -58,6 +58,7 @@ class UserApprovalScreen extends StatelessWidget {
             stream: FirebaseFirestore.instance
                 .collection('users')
                 .where('status', isEqualTo: 'Pending')
+                .limit(50)
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
@@ -236,7 +237,7 @@ class UserApprovalScreen extends StatelessWidget {
                                       SizedBox(height: 12),
                                       Text('$relation of $sName', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16, color: AppTheme.textPrimary)),
                                       SizedBox(height: 4),
-                                      Text('Class: $sClass  â€¢  Roll: $sRoll', style: TextStyle(color: Color(0xFF475569), fontWeight: FontWeight.w600, fontSize: 14)),
+                                      Text('Class: $sClass  •  Roll: $sRoll', style: TextStyle(color: Color(0xFF475569), fontWeight: FontWeight.w600, fontSize: 14)),
                                     ],
                                   ),
                                 ),

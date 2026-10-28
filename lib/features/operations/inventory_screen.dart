@@ -82,7 +82,7 @@ class InventoryScreen extends StatelessWidget {
               ),
               SizedBox(width: 16),
               Expanded(
-                child: _buildMiniStatCard('Total Value', 'à§³ 2.5M', Icons.account_balance_wallet_rounded, Colors.green.shade600),
+                child: _buildMiniStatCard('Total Value', '৳ 2.5M', Icons.account_balance_wallet_rounded, Colors.green.shade600),
               ),
             ],
           )

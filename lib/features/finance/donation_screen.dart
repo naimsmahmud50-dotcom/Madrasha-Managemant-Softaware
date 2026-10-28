@@ -64,16 +64,16 @@ class DonationScreen extends StatelessWidget {
         children: [
           Text('Total Ramadan Collection', style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500)),
           SizedBox(height: 8),
-          Text('à§³ 12,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+          Text('৳ 12,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
           SizedBox(height: 24),
           Row(
             children: [
               Expanded(
-                child: _buildMiniStatCard('Online Pay', 'à§³ 3.5L', Icons.account_balance_rounded),
+                child: _buildMiniStatCard('Online Pay', '৳ 3.5L', Icons.account_balance_rounded),
               ),
               SizedBox(width: 16),
               Expanded(
-                child: _buildMiniStatCard('Cash/Hand', 'à§³ 9.0L', Icons.payments_rounded),
+                child: _buildMiniStatCard('Cash/Hand', '৳ 9.0L', Icons.payments_rounded),
               ),
             ],
           )
@@ -173,10 +173,10 @@ class DonationScreen extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 16),
         children: [
-          _buildFundCard('Lillah Boarding', 'à§³ 5,20,000', Color(0xFF0284C7)),
-          _buildFundCard('Zakat Fund', 'à§³ 4,80,000', Colors.orange.shade600),
-          _buildFundCard('Sadaqah', 'à§³ 1,50,000', AppTheme.primaryBrand),
-          _buildFundCard('Mosque Fund', 'à§³ 1,00,000', Colors.green.shade700),
+          _buildFundCard('Lillah Boarding', '৳ 5,20,000', Color(0xFF0284C7)),
+          _buildFundCard('Zakat Fund', '৳ 4,80,000', Colors.orange.shade600),
+          _buildFundCard('Sadaqah', '৳ 1,50,000', AppTheme.primaryBrand),
+          _buildFundCard('Mosque Fund', '৳ 1,00,000', Colors.green.shade700),
         ],
       ),
     );
@@ -216,10 +216,10 @@ class DonationScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          _buildDonationTile('Al-Haj Abdur Rahman', 'Zakat Fund â€¢ Cash', 'à§³ 50,000', 'Today, 10:30 AM', Colors.orange.shade600),
-          _buildDonationTile('Anonymous Donor', 'Lillah Boarding â€¢ bKash', 'à§³ 5,000', 'Yesterday, 02:15 PM', Color(0xFF0284C7)),
-          _buildDonationTile('Hafiz Zubair Ahmed', 'Sadaqah â€¢ Bank Transfer', 'à§³ 10,000', '20 Sept 2026', AppTheme.primaryBrand),
-          _buildDonationTile('M/S Enterprise', 'Mosque Construction â€¢ Check', 'à§³ 1,00,000', '18 Sept 2026', Colors.green.shade700),
+          _buildDonationTile('Al-Haj Abdur Rahman', 'Zakat Fund • Cash', '৳ 50,000', 'Today, 10:30 AM', Colors.orange.shade600),
+          _buildDonationTile('Anonymous Donor', 'Lillah Boarding • bKash', '৳ 5,000', 'Yesterday, 02:15 PM', Color(0xFF0284C7)),
+          _buildDonationTile('Hafiz Zubair Ahmed', 'Sadaqah • Bank Transfer', '৳ 10,000', '20 Sept 2026', AppTheme.primaryBrand),
+          _buildDonationTile('M/S Enterprise', 'Mosque Construction • Check', '৳ 1,00,000', '18 Sept 2026', Colors.green.shade700),
         ],
       ),
     );

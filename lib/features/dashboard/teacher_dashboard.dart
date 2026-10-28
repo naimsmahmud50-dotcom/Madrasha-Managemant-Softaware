@@ -41,14 +41,14 @@ class TeacherDashboard extends StatelessWidget {
             // Updates List
             _buildAlertCard(
               'Class 8 (Mutawassitah) - Arabic',
-              'Room 204 â€¢ Topic: Nahw & Sarf',
+              'Room 204 • Topic: Nahw & Sarf',
               '10:30 AM',
               Icons.menu_book_rounded,
               Colors.blue.shade500,
             ),
             _buildAlertCard(
               'Staff Meeting',
-              'Principal\'s Office â€¢ Discussing Term Exams',
+              'Principal\'s Office • Discussing Term Exams',
               '02:00 PM',
               Icons.groups_rounded,
               Colors.green.shade500,

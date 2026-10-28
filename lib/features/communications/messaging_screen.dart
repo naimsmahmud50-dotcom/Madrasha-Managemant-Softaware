@@ -26,7 +26,7 @@ class MessagingScreen extends StatelessWidget {
           ),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('chat_rooms').orderBy('lastUpdated', descending: true).snapshots(),
+              stream: FirebaseFirestore.instance.collection('chat_rooms').orderBy('lastUpdated', descending: true).limit(30).snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator(color: Color(0xFF14B8A6)));

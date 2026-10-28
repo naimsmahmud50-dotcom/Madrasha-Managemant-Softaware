@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../core/theme/app_theme.dart';
@@ -11,7 +12,7 @@ import 'registration_screen.dart';
 import 'forgot_pin_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -34,8 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = true);
 
-    // Development Bypass
-    if (_phoneController.text.trim() == '00000' && _pinController.text.trim() == '123456') {
+    // Development Bypass (Strictly restricted to debug builds only)
+    if (kDebugMode && _phoneController.text.trim() == '00000' && _pinController.text.trim() == '123456') {
       setState(() => _isLoading = false);
       if (mounted) {
         Widget targetScreen;
@@ -306,60 +307,60 @@ class _LoginScreenState extends State<LoginScreen> {
                     
                     SizedBox(height: 24),
                     
-                    // --- DEVELOPER BYPASS (TEMPORARY) ---
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.amber.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.amber.shade300, width: 2),
-                      ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.engineering_rounded, color: Colors.amber, size: 20),
-                              SizedBox(width: 8),
-                              Text('Developer Security Bypass', style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold)),
-                            ],
-                          ),
-                          SizedBox(height: 16),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            alignment: WrapAlignment.center,
-                            children: _roles.map((role) {
-                              return InkWell(
-                                onTap: () {
-                                  Widget targetScreen;
-                                  switch (role) {
-                                    case 'Admin': targetScreen = MainLayout(dashboard: AdminDashboard(), role: 'Admin'); break;
-                                    case 'Teacher': targetScreen = MainLayout(dashboard: TeacherDashboard(), role: 'Teacher'); break;
-                                    case 'Guardian': targetScreen = MainLayout(dashboard: GuardianDashboard(), role: 'Guardian'); break;
-                                    case 'Student': targetScreen = MainLayout(dashboard: StudentDashboard(), role: 'Student'); break;
-                                    default: targetScreen = MainLayout(dashboard: AdminDashboard(), role: 'Admin');
-                                  }
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => targetScreen));
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 4)],
+                    if (kDebugMode) ...[
+                      // --- DEVELOPER BYPASS (DEBUG BUILDS ONLY) ---
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.amber.shade300, width: 2),
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.engineering_rounded, color: Colors.amber, size: 20),
+                                SizedBox(width: 8),
+                                Text('Developer Security Bypass (Debug Only)', style: TextStyle(color: Colors.amber.shade900, fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              alignment: WrapAlignment.center,
+                              children: _roles.map((role) {
+                                return InkWell(
+                                  onTap: () {
+                                    Widget targetScreen;
+                                    switch (role) {
+                                      case 'Admin': targetScreen = MainLayout(dashboard: AdminDashboard(), role: 'Admin'); break;
+                                      case 'Teacher': targetScreen = MainLayout(dashboard: TeacherDashboard(), role: 'Teacher'); break;
+                                      case 'Guardian': targetScreen = MainLayout(dashboard: GuardianDashboard(), role: 'Guardian'); break;
+                                      case 'Student': targetScreen = MainLayout(dashboard: StudentDashboard(), role: 'Student'); break;
+                                      default: targetScreen = MainLayout(dashboard: AdminDashboard(), role: 'Admin');
+                                    }
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => targetScreen));
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8),
+                                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 4)],
+                                    ),
+                                    child: Text(role, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppTheme.primaryBrand)),
                                   ),
-                                  child: Text(role, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppTheme.primaryBrand)),
-                                ),
-                              );
-                            }).toList(),
-                          )
-                        ],
+                                );
+                              }).toList(),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    // ------------------------------------
-
-                    SizedBox(height: 32),
+                      SizedBox(height: 32),
+                    ],
                   ],
                 ),
               ),
@@ -373,7 +374,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 class PremiumLoginButton extends StatefulWidget {
   final VoidCallback onTap;
-  PremiumLoginButton({super.key, required this.onTap});
+  const PremiumLoginButton({super.key, required this.onTap});
 
   @override
   State<PremiumLoginButton> createState() => _PremiumLoginButtonState();

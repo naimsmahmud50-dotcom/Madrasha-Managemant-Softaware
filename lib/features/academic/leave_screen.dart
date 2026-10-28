@@ -131,7 +131,7 @@ class _LeaveScreenState extends State<LeaveScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('leaves').orderBy('createdAt', descending: true).snapshots(),
+        stream: FirebaseFirestore.instance.collection('leaves').orderBy('createdAt', descending: true).limit(30).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator(color: AppTheme.primaryBrand));

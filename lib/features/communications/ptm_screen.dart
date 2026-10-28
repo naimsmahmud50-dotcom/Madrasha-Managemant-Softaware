@@ -2,7 +2,7 @@ import '../../core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class PtmScreen extends StatefulWidget {
-  PtmScreen({super.key});
+  const PtmScreen({super.key});
 
   @override
   State<PtmScreen> createState() => _PtmScreenState();

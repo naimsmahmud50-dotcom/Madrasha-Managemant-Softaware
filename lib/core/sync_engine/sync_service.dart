@@ -1,44 +1,88 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// PHASE 1 REQUIREMENT: Sync State Flow (Outbox Pattern)
-// 1. Teacher marks attendance offline -> Status: LOCAL_ONLY
-// 2. Network detected -> Move to Outbox Queue -> Status: PENDING -> SYNCING
-// 3. API Request to POST /api/v1/attendance/sync with syncId
-// 4. Server performs Idempotency Check:
-//    - If already processed -> Returns 200 OK -> Local Status: SYNCED
-//    - If conflict exists -> Returns 409 Conflict -> Local Status: CONFLICT
-//    - On success -> Local Status: SYNCED
+enum SyncStatus { idle, syncing, success, conflict, error }
 
-class SyncService {
-  // Dependency injected database and network client would go here
-  
-  Future<void> markAttendanceOffline(String studentId, String status) async {
-    // 1. Insert into Drift DB with status = LOCAL_ONLY
-    debugPrint('Inserting offline attendance for $studentId -> LOCAL_ONLY');
+class SyncState {
+  final int pendingCount;
+  final SyncStatus status;
+  final String? lastError;
+  final DateTime? lastSyncedAt;
+
+  const SyncState({
+    this.pendingCount = 0,
+    this.status = SyncStatus.idle,
+    this.lastError,
+    this.lastSyncedAt,
+  });
+
+  SyncState copyWith({
+    int? pendingCount,
+    SyncStatus? status,
+    String? lastError,
+    DateTime? lastSyncedAt,
+  }) {
+    return SyncState(
+      pendingCount: pendingCount ?? this.pendingCount,
+      status: status ?? this.status,
+      lastError: lastError,
+      lastSyncedAt: lastSyncedAt ?? this.lastSyncedAt,
+    );
+  }
+}
+
+class SyncNotifier extends Notifier<SyncState> {
+  @override
+  SyncState build() {
+    return const SyncState();
   }
 
-  Future<void> runSyncJob() async {
-    // 2. Fetch all LOCAL_ONLY and PENDING records
-    debugPrint('Fetching pending records from Drift DB...');
-    
-    // 3. Mark them as SYNCING in DB
-    debugPrint('Updating DB status to SYNCING...');
+  void setPendingCount(int count) {
+    state = state.copyWith(pendingCount: count);
+  }
+
+  void addPending() {
+    state = state.copyWith(pendingCount: state.pendingCount + 1);
+  }
+
+  Future<void> syncNow() async {
+    if (state.status == SyncStatus.syncing) return;
+
+    state = state.copyWith(status: SyncStatus.syncing);
+    debugPrint('[SyncEngine] Triggered manual outbox synchronization...');
 
     try {
-      // 4. API Request to backend
-      debugPrint('POST /api/v1/attendance/sync');
-      
-      // 5. On success, mark as SYNCED
-      debugPrint('Response 200 OK: Marking as SYNCED in DB');
+      // Simulate network sync roundtrip to NestJS API
+      await Future.delayed(const Duration(milliseconds: 600));
+
+      state = state.copyWith(
+        pendingCount: 0,
+        status: SyncStatus.success,
+        lastSyncedAt: DateTime.now(),
+      );
+      debugPrint('[SyncEngine] Outbox synced successfully.');
     } catch (e) {
-      // 6. Handle Conflict (409) or other errors
-      debugPrint('Response 409 Conflict: Marking as CONFLICT in DB');
+      state = state.copyWith(
+        status: SyncStatus.error,
+        lastError: e.toString(),
+      );
+      debugPrint('[SyncEngine] Sync failed: $e');
     }
   }
 }
 
-// Provide the sync service across the app
+final syncStateProvider = NotifierProvider<SyncNotifier, SyncState>(() {
+  return SyncNotifier();
+});
+
+class SyncService {
+  Future<void> markAttendanceOffline(String studentId, String status) async {
+    debugPrint('Inserting offline attendance for $studentId -> LOCAL_ONLY');
+  }
+
+  Future<void> runSyncJob() async {
+    debugPrint('Fetching pending records from Drift DB...');
+  }
+}
+
 final syncServiceProvider = Provider((ref) => SyncService());
-
-

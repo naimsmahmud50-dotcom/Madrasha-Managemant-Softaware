@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/widgets/bounce_wrapper.dart';
 
 class TarbiyahScreen extends StatefulWidget {
-  TarbiyahScreen({super.key});
+  const TarbiyahScreen({super.key});
 
   @override
   State<TarbiyahScreen> createState() => _TarbiyahScreenState();

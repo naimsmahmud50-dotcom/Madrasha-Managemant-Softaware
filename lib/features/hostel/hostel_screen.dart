@@ -4,7 +4,7 @@ import '../../core/theme/app_theme.dart';
 
 class HostelScreen extends StatefulWidget {
   final String role;
-  HostelScreen({super.key, required this.role});
+  const HostelScreen({super.key, required this.role});
 
   @override
   State<HostelScreen> createState() => _HostelScreenState();

@@ -14,7 +14,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
     {
       'title': 'Matbakh Groceries (Rice & Oil)',
       'category': 'Food & Kitchen',
-      'amount': 'Ã Â§Â³ 12,500',
+      'amount': '৳ 12,500',
       'date': '22 Sept, 2026',
       'hasVoucher': true,
       'color': Colors.orange.shade500,
@@ -23,7 +23,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
     {
       'title': 'Electricity Bill (August)',
       'category': 'Utilities',
-      'amount': 'Ã Â§Â³ 8,200',
+      'amount': '৳ 8,200',
       'date': '20 Sept, 2026',
       'hasVoucher': true,
       'color': Color(0xFF0EA5E9),
@@ -32,7 +32,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
     {
       'title': 'Library Books Maintenance',
       'category': 'Academic',
-      'amount': 'Ã Â§Â³ 3,100',
+      'amount': '৳ 3,100',
       'date': '18 Sept, 2026',
       'hasVoucher': false,
       'color': AppTheme.primaryBrand,
@@ -41,7 +41,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
     {
       'title': 'Plumbing Repair (Hostel)',
       'category': 'Maintenance',
-      'amount': 'Ã Â§Â³ 1,500',
+      'amount': '৳ 1,500',
       'date': '15 Sept, 2026',
       'hasVoucher': true,
       'color': Colors.grey.shade600,
@@ -117,7 +117,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
         children: [
           Text('Total Expense (Sept)', style: TextStyle(color: Colors.white70, fontSize: 14)),
           SizedBox(height: 8),
-          Text('Ã Â§Â³ 45,300', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold)),
+          Text('৳ 45,300', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold)),
           SizedBox(height: 24),
           
           // Custom Mini Chart / Progress Breakdown
@@ -208,7 +208,7 @@ class _ExpenseTrackingScreenState extends State<ExpenseTrackingScreen> {
                     Row(
                       children: [
                         Text(expense['category'], style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
-                        Text(' Ã¢â‚¬Â¢ ', style: TextStyle(color: Colors.grey.shade400)),
+                        Text(' • ', style: TextStyle(color: Colors.grey.shade400)),
                         Text(expense['date'], style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
                       ],
                     ),

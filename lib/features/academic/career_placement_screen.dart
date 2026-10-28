@@ -19,7 +19,7 @@ class CareerPlacementScreen extends StatelessWidget {
         'title': 'Senior Muhaddith (Hadith Teacher)',
         'location': 'Jamia Islamia, Dhaka',
         'type': 'Full Time',
-        'salary': 'à§³30,000 - à§³45,000',
+        'salary': '৳30,000 - ৳45,000',
         'deadline': '30 Shaban, 1447',
         'color': const Color(0xFF4F46E5), // Indigo
       },
@@ -27,7 +27,7 @@ class CareerPlacementScreen extends StatelessWidget {
         'title': 'Part-time Hifz Teacher',
         'location': 'Madani Maktab, Mirpur',
         'type': 'Part Time (Afternoon)',
-        'salary': 'à§³15,000',
+        'salary': '৳15,000',
         'deadline': 'Urgent',
         'color': Colors.orange.shade500, // Amber
       },

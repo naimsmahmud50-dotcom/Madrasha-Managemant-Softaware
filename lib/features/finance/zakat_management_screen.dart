@@ -13,21 +13,21 @@ class _ZakatManagementScreenState extends State<ZakatManagementScreen> {
     {
       'donor': 'Anonymous (Dubai)',
       'type': 'Zakat',
-      'amount': 'Ã¢Â‚Â§ 50,000',
+      'amount': '৳ 50,000',
       'date': 'Today, 10:30 AM',
       'isZakat': true,
     },
     {
       'donor': 'Haji Abdul Karim',
       'type': 'Sadaqah Jariyah',
-      'amount': 'Ã¢Â‚Â§ 15,000',
+      'amount': '৳ 15,000',
       'date': 'Yesterday, 04:15 PM',
       'isZakat': false,
     },
     {
       'donor': 'Dr. Shafiqur Rahman',
       'type': 'Lillah (Orphanage)',
-      'amount': 'Ã¢Â‚Â§ 1,00,000',
+      'amount': '৳ 1,00,000',
       'date': '20 Shaban, 1447',
       'isZakat': false,
     },
@@ -105,7 +105,7 @@ class _ZakatManagementScreenState extends State<ZakatManagementScreen> {
         children: [
           Text('Total Fund Collected (Ramadan Campaign)', style: TextStyle(color: Colors.white70, fontSize: 12, fontWeight: FontWeight.bold)),
           SizedBox(height: 8),
-          Text('Ã¢Â‚Â§ 12,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1)),
+          Text('৳ 12,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1)),
           SizedBox(height: 24),
           // Progress Bar
           Column(
@@ -114,7 +114,7 @@ class _ZakatManagementScreenState extends State<ZakatManagementScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Campaign Target: Ã¢Â‚Â§ 20,00,000', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
+                  Text('Campaign Target: ৳ 20,00,000', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600)),
                   Text('62%', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -140,9 +140,9 @@ class _ZakatManagementScreenState extends State<ZakatManagementScreen> {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Row(
         children: [
-          Expanded(child: _buildCategoryCard('Zakat Fund', 'Strictly for poor students', 'Ã¢Â‚Â§ 8,00,000', Color(0xFF0EA5E9), Icons.volunteer_activism_rounded)),
+          Expanded(child: _buildCategoryCard('Zakat Fund', 'Strictly for poor students', '৳ 8,00,000', Color(0xFF0EA5E9), Icons.volunteer_activism_rounded)),
           SizedBox(width: 12),
-          Expanded(child: _buildCategoryCard('Lillah / Sadaqah', 'General Madrasah operations', 'Ã¢Â‚Â§ 4,50,000', AppTheme.primaryBrand, Icons.mosque_rounded)),
+          Expanded(child: _buildCategoryCard('Lillah / Sadaqah', 'General Madrasah operations', '৳ 4,50,000', AppTheme.primaryBrand, Icons.mosque_rounded)),
         ],
       ),
     );

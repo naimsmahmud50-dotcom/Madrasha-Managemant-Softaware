@@ -4,7 +4,7 @@ import '../../core/utils/pdf_generator.dart';
 import '../../core/theme/app_theme.dart';
 
 class CertificateScreen extends StatefulWidget {
-  CertificateScreen({super.key});
+  const CertificateScreen({super.key});
 
   @override
   State<CertificateScreen> createState() => _CertificateScreenState();

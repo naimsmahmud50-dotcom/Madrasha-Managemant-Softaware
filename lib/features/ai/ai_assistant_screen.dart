@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'ai_chat_screen.dart';
 
 class AiAssistantScreen extends StatelessWidget {
-  AiAssistantScreen({super.key});
+  const AiAssistantScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

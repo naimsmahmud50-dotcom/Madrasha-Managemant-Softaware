@@ -83,9 +83,8 @@ class NoticeBoardScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        // Fetch all notices to avoid Firestore Composite Index requirements. 
-        // We will filter them locally in Dart for Teacher/Student/Guardian.
-        stream: FirebaseFirestore.instance.collection('notices').orderBy('createdAt', descending: true).snapshots(),
+        // Fetch recent notices with a bounded limit to prevent Firestore 50k read quota exhaustion
+        stream: FirebaseFirestore.instance.collection('notices').orderBy('createdAt', descending: true).limit(30).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator(color: AppTheme.primaryBrand));

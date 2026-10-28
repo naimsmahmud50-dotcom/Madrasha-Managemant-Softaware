@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FeesScreen extends StatefulWidget {
   final String role;
-  FeesScreen({super.key, required this.role});
+  const FeesScreen({super.key, required this.role});
 
   @override
   State<FeesScreen> createState() => _FeesScreenState();
@@ -78,7 +78,7 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
                     
                     TextField(
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(labelText: 'Amount (à§³)', border: OutlineInputBorder()),
+                      decoration: InputDecoration(labelText: 'Amount (৳)', border: OutlineInputBorder()),
                       onChanged: (val) => amount = double.tryParse(val) ?? 0,
                     ),
                     SizedBox(height: 12),
@@ -151,7 +151,7 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('invoices').orderBy('createdAt', descending: true).snapshots(),
+        stream: FirebaseFirestore.instance.collection('invoices').orderBy('createdAt', descending: true).limit(50).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -202,9 +202,9 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
       children: [
         Row(
           children: [
-            Expanded(child: _buildAdminStatCard('Collected', 'à§³ $totalCollected', Icons.trending_up_rounded, Colors.green.shade600)),
+            Expanded(child: _buildAdminStatCard('Collected', '৳ $totalCollected', Icons.trending_up_rounded, Colors.green.shade600)),
             SizedBox(width: 16),
-            Expanded(child: _buildAdminStatCard('Pending Dues', 'à§³ $totalPending', Icons.warning_rounded, Colors.red.shade600)),
+            Expanded(child: _buildAdminStatCard('Pending Dues', '৳ $totalPending', Icons.warning_rounded, Colors.red.shade600)),
           ],
         ),
         SizedBox(height: 32),
@@ -225,7 +225,7 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
           return _buildRecentPaymentRow(
             data['studentName'] ?? 'Unknown', 
             data['title'] ?? '', 
-            'à§³${data['amount']}', 
+            '৳${data['amount']}', 
             'Paid'
           );
         }),
@@ -292,7 +292,7 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
           doc.id,
           data['title'] ?? 'Invoice',
           data['subtitle'] ?? 'Fee',
-          'à§³${data['amount']}',
+          '৳${data['amount']}',
           isPaid: isPaid,
           dueDate: data['dueDate'],
         );
@@ -316,7 +316,7 @@ class _FeesScreenState extends State<FeesScreen> with SingleTickerProviderStateM
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text('à§³', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+              Text('৳', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
               SizedBox(width: 4),
               Text(totalPending.toStringAsFixed(0), style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.w900)),
               Text('.00', style: TextStyle(color: Colors.white70, fontSize: 20, fontWeight: FontWeight.bold)),

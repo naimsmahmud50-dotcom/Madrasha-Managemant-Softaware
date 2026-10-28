@@ -6,7 +6,7 @@ import 'student_profile_screen.dart';
 import 'teacher_profile_screen.dart';
 
 class DirectoryScreen extends StatefulWidget {
-  DirectoryScreen({super.key});
+  const DirectoryScreen({super.key});
 
   @override
   State<DirectoryScreen> createState() => _DirectoryScreenState();
@@ -98,7 +98,7 @@ class _DirectoryScreenState extends State<DirectoryScreen> with SingleTickerProv
 
   Widget _buildStudentsTab() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('students').orderBy('createdAt', descending: true).snapshots(),
+      stream: FirebaseFirestore.instance.collection('students').orderBy('createdAt', descending: true).limit(50).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator(color: Color(0xFF1E3A8A)));
@@ -126,7 +126,7 @@ class _DirectoryScreenState extends State<DirectoryScreen> with SingleTickerProv
 
   Widget _buildStaffTab() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('users').where('role', isEqualTo: 'Teacher').snapshots(),
+      stream: FirebaseFirestore.instance.collection('users').where('role', isEqualTo: 'Teacher').limit(50).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator(color: Color(0xFF1E3A8A)));

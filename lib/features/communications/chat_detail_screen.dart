@@ -105,6 +105,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                   .doc(widget.roomId)
                   .collection('messages')
                   .orderBy('createdAt')
+                  .limitToLast(50)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {

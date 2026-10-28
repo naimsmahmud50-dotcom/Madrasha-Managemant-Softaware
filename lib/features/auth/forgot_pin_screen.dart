@@ -4,7 +4,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/widgets/bounce_wrapper.dart';
 
 class ForgotPinScreen extends StatefulWidget {
-  ForgotPinScreen({super.key});
+  const ForgotPinScreen({super.key});
 
   @override
   State<ForgotPinScreen> createState() => _ForgotPinScreenState();

@@ -231,7 +231,7 @@ class _HifzTrackingScreenState extends ConsumerState<HifzTrackingScreen> {
   Widget _buildStudentView(String dateStr) {
     // Show current student's records
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('hifz_records').orderBy('createdAt', descending: true).snapshots(),
+      stream: FirebaseFirestore.instance.collection('hifz_records').orderBy('createdAt', descending: true).limit(50).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator(color: AppTheme.primaryBrand));

@@ -4,7 +4,7 @@ import '../../core/widgets/bounce_wrapper.dart';
 import 'inventory_screen.dart';
 
 class OperationsScreen extends StatelessWidget {
-  OperationsScreen({super.key});
+  const OperationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class OperationsScreen extends StatelessWidget {
             children: [
               Icon(Icons.event_note_rounded, size: 16, color: Color(0xFF0EA5E9)),
               SizedBox(width: 8),
-              Text('$type â€¢ $date', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF334155))),
+              Text('$type • $date', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500, color: Color(0xFF334155))),
             ],
           ),
           SizedBox(height: 16),

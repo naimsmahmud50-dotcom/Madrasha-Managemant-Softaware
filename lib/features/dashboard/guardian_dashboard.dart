@@ -47,7 +47,7 @@ class _GuardianDashboardState extends ConsumerState<GuardianDashboard> {
               children: [
                 Expanded(child: _buildStatCard('Enrolled Children', '2', Icons.family_restroom_rounded, AppTheme.primaryBrand)),
                 const SizedBox(width: 12),
-                Expanded(child: GestureDetector(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => FeesScreen(role: 'Guardian'))), child: _buildStatCard('Total Dues', 'à§³ 0.00', Icons.check_circle_rounded, Colors.green.shade500))),
+                Expanded(child: GestureDetector(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => FeesScreen(role: 'Guardian'))), child: _buildStatCard('Total Dues', '৳ 0.00', Icons.check_circle_rounded, Colors.green.shade500))),
               ],
             ),
             const SizedBox(height: 24),

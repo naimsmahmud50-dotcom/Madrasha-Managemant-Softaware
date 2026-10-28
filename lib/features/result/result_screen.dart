@@ -8,7 +8,7 @@ import '../../core/theme/app_theme.dart';
 
 class ResultScreen extends ConsumerStatefulWidget {
   final String role;
-  ResultScreen({super.key, required this.role});
+  const ResultScreen({super.key, required this.role});
 
   @override
   ConsumerState<ResultScreen> createState() => _ResultScreenState();
@@ -192,6 +192,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
               stream: FirebaseFirestore.instance.collection('results')
                   .where('sClass', isEqualTo: _selectedClass)
                   .orderBy('createdAt', descending: true)
+                  .limit(50)
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -238,7 +239,7 @@ class _ResultScreenState extends ConsumerState<ResultScreen> {
   // Fallback stream if composite index is missing (filters purely in client)
   Widget _buildWithoutIndexFallback() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('results').orderBy('createdAt', descending: true).snapshots(),
+      stream: FirebaseFirestore.instance.collection('results').orderBy('createdAt', descending: true).limit(50).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return Center(child: CircularProgressIndicator(color: AppTheme.primaryBrand));
         final filteredDocs = snapshot.data!.docs.where((doc) => (doc.data() as Map<String, dynamic>)['sClass'] == _selectedClass).toList();

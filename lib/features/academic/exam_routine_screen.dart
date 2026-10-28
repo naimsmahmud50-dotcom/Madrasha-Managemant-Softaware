@@ -354,7 +354,7 @@ class _ExamRoutineScreenState extends State<ExamRoutineScreen> {
                 Text('ADMIT CARD NO: 1447-802', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: Colors.grey.shade600)),
                 const SizedBox(height: 8),
                 Text('Abdullah Al Mahmud', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppTheme.textPrimary)),
-                const Text('Class 8 (Mutawassitah) â€¢ Roll 101', style: TextStyle(fontSize: 14, color: Color(0xFF4F46E5), fontWeight: FontWeight.w600)),
+                const Text('Class 8 (Mutawassitah) • Roll 101', style: TextStyle(fontSize: 14, color: Color(0xFF4F46E5), fontWeight: FontWeight.w600)),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: Divider(),

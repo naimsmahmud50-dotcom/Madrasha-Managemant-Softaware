@@ -3,7 +3,7 @@ import '../../core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MadrasahConfigScreen extends StatefulWidget {
-  MadrasahConfigScreen({super.key});
+  const MadrasahConfigScreen({super.key});
 
   @override
   State<MadrasahConfigScreen> createState() => _MadrasahConfigScreenState();

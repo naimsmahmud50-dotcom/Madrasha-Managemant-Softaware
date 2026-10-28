@@ -8,7 +8,7 @@ import '../setup/system_settings_screen.dart';
 import 'package:flutter/services.dart'; // Added for SystemNavigator.pop
 
 class AdminDashboard extends StatelessWidget {
-  AdminDashboard({super.key});
+  const AdminDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +82,12 @@ class AdminDashboard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('students').snapshots(),
+                  child: FutureBuilder<AggregateQuerySnapshot>(
+                    future: FirebaseFirestore.instance.collection('students').count().get(),
                     builder: (context, snapshot) {
                       String count = '...';
-                      if (snapshot.hasData) {
-                        count = snapshot.data!.docs.length.toString();
+                      if (snapshot.hasData && snapshot.data?.count != null) {
+                        count = snapshot.data!.count!.toString();
                       }
                       return _buildStatCard('Total Students', count, Icons.groups_rounded, Colors.blue.shade600);
                     },
@@ -112,7 +112,7 @@ class AdminDashboard extends StatelessWidget {
               children: [
                 Expanded(child: _buildStatCard('Attendance Today', '92%', Icons.check_circle_rounded, Colors.green.shade600)),
                 SizedBox(width: 12),
-                Expanded(child: _buildStatCard('Due Fees (Est)', 'à§³ 45K', Icons.account_balance_wallet_rounded, Colors.red.shade600)),
+                Expanded(child: _buildStatCard('Due Fees (Est)', '৳ 45K', Icons.account_balance_wallet_rounded, Colors.red.shade600)),
               ],
             ),
             

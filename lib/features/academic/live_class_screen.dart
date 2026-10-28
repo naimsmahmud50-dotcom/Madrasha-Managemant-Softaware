@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class LiveClassScreen extends StatefulWidget {
   final String role;
-  LiveClassScreen({super.key, required this.role});
+  const LiveClassScreen({super.key, required this.role});
 
   @override
   State<LiveClassScreen> createState() => _LiveClassScreenState();
@@ -229,7 +229,7 @@ class _LiveClassScreenState extends State<LiveClassScreen> with SingleTickerProv
 
   Widget _buildWithoutIndexFallback() {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('live_classes').orderBy('createdAt', descending: true).snapshots(),
+      stream: FirebaseFirestore.instance.collection('live_classes').orderBy('createdAt', descending: true).limit(30).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return Center(child: CircularProgressIndicator(color: Colors.red.shade600));
         final filteredDocs = snapshot.data!.docs.where((doc) => (doc.data() as Map<String, dynamic>)['sClass'] == _selectedClass).toList();

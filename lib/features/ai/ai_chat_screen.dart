@@ -44,7 +44,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
       if (lowerQuery.contains('exam') || lowerQuery.contains('routine')) {
         response = "The Half-Yearly Examinations (1446-1447 AH) are currently scheduled. The next exam is Quran Majeed on 15 Shaban in the Main Hall.";
       } else if (lowerQuery.contains('fee') || lowerQuery.contains('due') || lowerQuery.contains('pay')) {
-        response = "Based on the recent invoices, standard monthly tuition is à§³ 2,500. Some students have pending dues for Matbakh (Dining) services.";
+        response = "Based on the recent invoices, standard monthly tuition is ৳ 2,500. Some students have pending dues for Matbakh (Dining) services.";
       } else if (lowerQuery.contains('attendance') || lowerQuery.contains('present')) {
         response = "Today's staff attendance looks good! 3 staff members are present and 1 is late. No leaves have been taken today.";
       } else if (lowerQuery.contains('sabaq') || lowerQuery.contains('hifz')) {

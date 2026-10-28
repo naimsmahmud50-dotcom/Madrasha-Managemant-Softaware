@@ -97,7 +97,7 @@ class _TeacherAssignmentScreenState extends State<TeacherAssignmentScreen> with 
           className: 'Class 7 (Ibtidaiyyah)',
           title: 'Essay on the Battle of Badr',
           dueDate: '15 Sept 2026',
-          stats: '30/30 Submitted â€¢ 12 Ungraded',
+          stats: '30/30 Submitted • 12 Ungraded',
           isUrgent: false,
           needsGrading: true,
         ),

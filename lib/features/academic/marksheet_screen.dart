@@ -25,7 +25,7 @@ class MarksheetScreen extends ConsumerWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('exam_results').orderBy('createdAt', descending: true).snapshots(),
+        stream: FirebaseFirestore.instance.collection('exam_results').orderBy('createdAt', descending: true).limit(50).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -134,7 +134,7 @@ class MarksheetScreen extends ConsumerWidget {
                     const Text('Grade', style: TextStyle(color: Colors.grey, fontSize: 12)),
                     const SizedBox(height: 4),
                     Text(
-                      type == MadrasahType.qawmi ? grade : ' ()', 
+                      type == MadrasahType.qawmi ? grade : '$grade (GPA: ${gpa.toStringAsFixed(2)})', 
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: gradeColor)
                     ),
                   ],

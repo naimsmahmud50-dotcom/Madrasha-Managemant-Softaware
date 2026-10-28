@@ -14,7 +14,7 @@ class _InfirmaryScreenState extends State<InfirmaryScreen> {
     {
       'name': 'Abdullah Al Noman',
       'class': 'Class 8 (Hifz)',
-      'symptom': 'High Fever (102Ã‚Â°F) & Cough',
+      'symptom': 'High Fever (102°F) & Cough',
       'admittedAt': 'Today, 08:30 AM',
       'status': 'Resting',
       'severity': 'Moderate',
@@ -270,7 +270,7 @@ class _InfirmaryScreenState extends State<InfirmaryScreen> {
                   SizedBox(height: 16),
                   Row(
                     children: [
-                      Expanded(child: _buildInputField('Body Temp (Ã‚Â°F)', 'E.g. 101.5', Icons.thermostat_rounded)),
+                      Expanded(child: _buildInputField('Body Temp (°F)', 'E.g. 101.5', Icons.thermostat_rounded)),
                       SizedBox(width: 16),
                       Expanded(child: _buildInputField('Blood Pressure', 'E.g. 120/80', Icons.monitor_heart_rounded)),
                     ],

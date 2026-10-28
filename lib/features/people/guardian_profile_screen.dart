@@ -44,7 +44,7 @@ class GuardianProfileScreen extends StatelessWidget {
             SizedBox(height: 16),
             _buildInfoSection('Financial Overview', [
               _buildInfoRow('Active Payment Plans', '2 Plans Active'),
-              _buildInfoRow('Total Outstanding', 'à§³ 1,500', valueColor: Colors.red.shade600),
+              _buildInfoRow('Total Outstanding', '৳ 1,500', valueColor: Colors.red.shade600),
               _buildInfoRow('Next Due Date', '05 Oct 2026', valueColor: Colors.green.shade900),
             ]),
             SizedBox(height: 40),

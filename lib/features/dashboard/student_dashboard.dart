@@ -30,7 +30,7 @@ class StudentDashboard extends StatelessWidget {
               children: [
                 Expanded(child: _buildStatCard('My Attendance', '98%', Icons.how_to_reg_rounded, Colors.green.shade500)),
                 const SizedBox(width: 12),
-                Expanded(child: GestureDetector(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => FeesScreen(role: 'Student'))), child: _buildStatCard('Due Fees', 'à§³ 500', Icons.money_off_rounded, Colors.red.shade600))),
+                Expanded(child: GestureDetector(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => FeesScreen(role: 'Student'))), child: _buildStatCard('Due Fees', '৳ 500', Icons.money_off_rounded, Colors.red.shade600))),
               ],
             ),
             const SizedBox(height: 24),

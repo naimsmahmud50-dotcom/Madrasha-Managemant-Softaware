@@ -1,0 +1,99 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Security Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function getUserRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && getUserRole() == 'Admin';
+    }
+
+    function isTeacher() {
+      return isAuthenticated() && (getUserRole() == 'Teacher' || getUserRole() == 'Admin');
+    }
+
+    // Users Collection: Authenticated users can view profiles; only self or Admin can update
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(userId) || isAdmin();
+    }
+
+    // Students Directory: Authenticated users can read; Teachers & Admins can write
+    match /students/{studentId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher();
+    }
+
+    // Attendance Records: Authenticated users can read; Teachers & Admins can mark attendance
+    match /attendance/{attendanceId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher();
+    }
+
+    // Examination Results: Authenticated users can view; Teachers & Admins can publish
+    match /results/{resultId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher();
+    }
+
+    // Notices & Circulars: Authenticated users can read; Teachers & Admins can publish
+    match /notices/{noticeId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher();
+    }
+
+    // Invoices & Tuition Fees: Authenticated users can read; Admins can manage
+    match /invoices/{invoiceId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // Messaging & Chat Rooms: Authenticated users can participate
+    match /chat_rooms/{roomId} {
+      allow read, write: if isAuthenticated();
+      match /messages/{messageId} {
+        allow read, write: if isAuthenticated();
+      }
+    }
+
+    // Hifz Progress Records: Authenticated users can view; Teachers can update
+    match /hifz_records/{recordId} {
+      allow read: if isAuthenticated();
+      allow write: if isTeacher();
+    }
+
+    // Hostel & Dining Management
+    match /hostel_rooms/{roomId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    match /matbakh_menu/{menuId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+
+    // PIN Reset Requests: Unauthenticated users can submit a request (create-only); only Admins can process
+    match /pin_reset_requests/{requestId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Default Fallback: Block all unauthenticated scrapers and crawlers from draining the 50k daily quota
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

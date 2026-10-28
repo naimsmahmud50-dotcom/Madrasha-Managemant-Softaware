@@ -42,13 +42,13 @@ class FinanceScreen extends StatelessWidget {
                   children: [
                     const Text('Current Balance (Sept 2026)', style: TextStyle(color: Colors.white70, fontSize: 14)),
                     const SizedBox(height: 8),
-                    const Text('à§³ 14,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1)),
+                    const Text('৳ 14,50,000', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1)),
                     const SizedBox(height: 24),
                     Row(
                       children: [
-                        Expanded(child: _buildSummaryCard('Total Collection', 'à§³ 4,20K', Icons.arrow_upward_rounded, Colors.green.shade600)),
+                        Expanded(child: _buildSummaryCard('Total Collection', '৳ 4,20K', Icons.arrow_upward_rounded, Colors.green.shade600)),
                         const SizedBox(width: 12),
-                        Expanded(child: _buildSummaryCard('Pending Dues', 'à§³ 1,15K', Icons.warning_rounded, Colors.orange.shade500)),
+                        Expanded(child: _buildSummaryCard('Pending Dues', '৳ 1,15K', Icons.warning_rounded, Colors.orange.shade500)),
                       ],
                     ),
                   ],
@@ -96,10 +96,10 @@ class FinanceScreen extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 children: [
-                  _buildTransactionTile('Monthly Fee - Abdullah', 'Class 6 - Roll 102', 'à§³ 1,500', 'Success', true),
-                  _buildTransactionTile('Electricity Bill', 'Utility Expenses', 'à§³ 8,200', 'Expense', false),
-                  _buildTransactionTile('Donation - Rahim', 'General Fund', 'à§³ 5,000', 'Success', true),
-                  _buildTransactionTile('Pending Fee - Omar', 'Class 6 - Roll 103', 'à§³ 1,500', 'Pending', true, isPending: true),
+                  _buildTransactionTile('Monthly Fee - Abdullah', 'Class 6 - Roll 102', '৳ 1,500', 'Success', true),
+                  _buildTransactionTile('Electricity Bill', 'Utility Expenses', '৳ 8,200', 'Expense', false),
+                  _buildTransactionTile('Donation - Rahim', 'General Fund', '৳ 5,000', 'Success', true),
+                  _buildTransactionTile('Pending Fee - Omar', 'Class 6 - Roll 103', '৳ 1,500', 'Pending', true, isPending: true),
                 ],
               ),
               const SizedBox(height: 32),

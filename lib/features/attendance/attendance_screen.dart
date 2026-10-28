@@ -6,7 +6,7 @@ import '../../core/providers/madrasah_settings_provider.dart';
 
 class AttendanceScreen extends ConsumerStatefulWidget {
   final String role;
-  AttendanceScreen({super.key, required this.role});
+  const AttendanceScreen({super.key, required this.role});
 
   @override
   ConsumerState<AttendanceScreen> createState() => _AttendanceScreenState();

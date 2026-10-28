@@ -68,7 +68,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
                         Expanded(
                           child: TextField(
                             keyboardType: TextInputType.number,
-                            decoration: InputDecoration(labelText: 'Base Salary (à§³)', border: OutlineInputBorder()),
+                            decoration: InputDecoration(labelText: 'Base Salary (৳)', border: OutlineInputBorder()),
                             onChanged: (val) => baseSalary = double.tryParse(val) ?? 0,
                           ),
                         ),
@@ -76,7 +76,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
                         Expanded(
                           child: TextField(
                             keyboardType: TextInputType.number,
-                            decoration: InputDecoration(labelText: 'Deductions (à§³)', border: OutlineInputBorder()),
+                            decoration: InputDecoration(labelText: 'Deductions (৳)', border: OutlineInputBorder()),
                             onChanged: (val) => deductions = double.tryParse(val) ?? 0,
                           ),
                         ),
@@ -144,7 +144,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('staff_payroll').orderBy('createdAt', descending: true).snapshots(),
+        stream: FirebaseFirestore.instance.collection('staff_payroll').orderBy('createdAt', descending: true).limit(50).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator(color: AppTheme.primaryBrand));
@@ -213,16 +213,16 @@ class _PayrollScreenState extends State<PayrollScreen> {
         children: [
           Text('Total Estimated Payroll', style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500)),
           SizedBox(height: 8),
-          Text('à§³ ${total.toStringAsFixed(0)}', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+          Text('৳ ${total.toStringAsFixed(0)}', style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
           SizedBox(height: 24),
           Row(
             children: [
               Expanded(
-                child: _buildMiniStatCard('Paid', 'à§³ ${paid.toStringAsFixed(0)}', Icons.check_circle_rounded, Colors.green.shade600),
+                child: _buildMiniStatCard('Paid', '৳ ${paid.toStringAsFixed(0)}', Icons.check_circle_rounded, Colors.green.shade600),
               ),
               SizedBox(width: 16),
               Expanded(
-                child: _buildMiniStatCard('Pending', 'à§³ ${(total - paid).toStringAsFixed(0)}', Icons.pending_actions_rounded, Colors.orange.shade500),
+                child: _buildMiniStatCard('Pending', '৳ ${(total - paid).toStringAsFixed(0)}', Icons.pending_actions_rounded, Colors.orange.shade500),
               ),
             ],
           ),
@@ -309,7 +309,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Base Salary', style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
-                    Text('à§³ ${data['baseSalary']}', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
+                    Text('৳ ${data['baseSalary']}', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppTheme.textPrimary)),
                   ],
                 ),
                 SizedBox(height: 8),
@@ -317,7 +317,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Deductions', style: TextStyle(fontSize: 12, color: Colors.red.shade500)),
-                    Text('- à§³ ${data['deductions']}', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.red.shade500)),
+                    Text('- ৳ ${data['deductions']}', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.red.shade500)),
                   ],
                 ),
                 Padding(
@@ -328,7 +328,7 @@ class _PayrollScreenState extends State<PayrollScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Net Pay', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppTheme.primaryBrand)),
-                    Text('à§³ ${data['netPay']}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xFF5B21B6))),
+                    Text('৳ ${data['netPay']}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xFF5B21B6))),
                   ],
                 ),
                 if (isAdmin && !isPaid) ...[

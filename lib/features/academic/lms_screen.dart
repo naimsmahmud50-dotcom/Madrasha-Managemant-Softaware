@@ -212,7 +212,7 @@ class _LmsScreenState extends State<LmsScreen> {
           
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('study_materials').orderBy('createdAt', descending: true).snapshots(),
+              stream: FirebaseFirestore.instance.collection('study_materials').orderBy('createdAt', descending: true).limit(30).snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator(color: Color(0xFF4338CA)));

@@ -1,5 +1,7 @@
 import '../../core/theme/app_theme.dart';
+import '../../core/sync_engine/sync_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app_menu_screen.dart';
 import '../notifications/notification_center_screen.dart';
@@ -58,13 +60,31 @@ class _MainLayoutState extends State<MainLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        physics: BouncingScrollPhysics(), // Premium smooth bouncy feel
-        onPageChanged: (index) {
-          setState(() => _currentIndex = index);
-        },
-        children: _screens,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Consumer(
+              builder: (context, ref, _) {
+                final syncState = ref.watch(syncStateProvider);
+                return OfflineSyncBanner(
+                  pendingItems: syncState.pendingCount,
+                  isSyncing: syncState.status == SyncStatus.syncing,
+                  onSync: () => ref.read(syncStateProvider.notifier).syncNow(),
+                );
+              },
+            ),
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                physics: const BouncingScrollPhysics(), // Premium smooth bouncy feel
+                onPageChanged: (index) {
+                  setState(() => _currentIndex = index);
+                },
+                children: _screens,
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
