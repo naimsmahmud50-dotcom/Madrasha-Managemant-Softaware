@@ -57,7 +57,7 @@ From specialized **Hifz progress tracking (Sabaq, Sabaqi, Ammokhta)** and multi-
 ```mermaid
 graph TD
   A[📱 Flutter Mobile App] -->|Offline-First / Riverpod| B(Local Drift SQLite DB)
-  A -->|Direct Realtime Stream| C[(🔥 Cloud Firestore)]
+  A -->|Direct Realtime Stream| C[( Cloud Firestore)]
   A -->|Secure Bearer JWT| D[⚡ Core API / NestJS]
   
   D -->|Multi-Tenant RLS| E[(🐘 PostgreSQL Database)]
@@ -123,7 +123,7 @@ Madrasha Ecosystem/
 
 ---
 
-## 🚀 Getting Started (রান করার নির্দেশিকা)
+##  Getting Started (রান করার নির্দেশিকা)
 
 ### Prerequisites (পূর্বশর্ত)
 - **Flutter SDK:** `>= 3.24.0`
@@ -203,7 +203,7 @@ SSL_WIRELESS_API_KEY=your_backup_sms_key
 
 ---
 
-## 🧪 Verification & Test Coverage (টেস্টিং ফলাফল)
+##  Verification & Test Coverage (টেস্টিং ফলাফল)
 
 - **Backend API:** `49 / 49 tests passed (100% Pass Rate)` across JWT cryptography, AI gateway rate-limiting, and carrier multi-part SMS logic.
 - **Mobile Client:** `flutter analyze` reports `0 issues found`.
